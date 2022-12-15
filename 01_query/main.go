@@ -8,6 +8,7 @@ import (
 
 // GETメソッド処理関数
 func getFunction(ctx *gin.Context) {
+	// クエリの取得
 	firstname := ctx.DefaultQuery("firstname", "Guest")
 	lastname := ctx.Query("lastname")
 	ctx.JSON(http.StatusOK, gin.H{
