@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// レスポンスデータ
+// レスポンスとなる機密データ
 var secrets = gin.H{
 	"foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
 	"austin": gin.H{"email": "austin@example.com", "phone": "666"},
@@ -25,7 +25,7 @@ func main() {
 		"john":   "4321",
 	}))
 
-	// エンドポイントは [ip]:[port]/admin/secrets
+	// 上記ミドルウェアにより、エンドポイントは [ip]:[port]/admin/secrets となる
 	authorized.GET("/secrets", func(ctx *gin.Context) {
 		// BasicAuth ミドルウェアで設定されたユーザー名にアクセスする
 		user := ctx.MustGet(gin.AuthUserKey).(string)
