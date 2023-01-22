@@ -12,8 +12,9 @@ func MyCustomMiddleWare1() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		// 本処理前に実行
 		fmt.Println("> MyCustomMiddleWare1 Start")
-		// アクセス元のIPアドレス取得
-		fmt.Println("clientIP: ", context.ClientIP())
+		// アクセス元のIPアドレス, UserAgentの取得
+		fmt.Println("ClientIP: ", context.ClientIP())
+		fmt.Println("UserAgent: ", context.GetHeader("User-Agent"))
 		// 本処理に入る
 		context.Next()
 		// 本処理後に実行
