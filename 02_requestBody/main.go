@@ -26,9 +26,12 @@ func postFunction(ctx *gin.Context) {
 }
 
 func main() {
-	router := gin.Default()
+	// GinをReleaseモードに設定
+	gin.SetMode(gin.ReleaseMode)
+	// Engineインスタンスの作成
+	engine := gin.Default()
 	// /hello
 	// BodyData: {"firstname": "XXX", "lastname": "YYY"}
-	router.POST("/hello", postFunction)
-	router.Run(":3000")
+	engine.POST("/hello", postFunction)
+	engine.Run(":3000")
 }

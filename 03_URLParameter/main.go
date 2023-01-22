@@ -7,20 +7,23 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+	// GinをReleaseモードに設定
+	gin.SetMode(gin.ReleaseMode)
+	// Engineインスタンスの作成
+	engine := gin.Default()
 	// /user/john にはマッチするが、/user/ や /user にはマッチしない
-	router.GET("/user/:name", func(c *gin.Context) {
+	engine.GET("/user/:name", func(c *gin.Context) {
 		// URLパラメータの取得
 		name := c.Param("name")
 		c.String(http.StatusOK, "Hello %s", name)
 	})
 	// /user/john/ と /user/john/send にマッチする
-	router.GET("/user/:name/*action", func(c *gin.Context) {
+	engine.GET("/user/:name/*action", func(c *gin.Context) {
 		// URLパラメータの取得
 		name := c.Param("name")
 		action := c.Param("action")
 		message := name + " is " + action
 		c.String(http.StatusOK, message)
 	})
-	router.Run(":3000")
+	engine.Run(":3000")
 }

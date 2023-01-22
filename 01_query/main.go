@@ -18,8 +18,11 @@ func getFunction(ctx *gin.Context) {
 }
 
 func main() {
-	router := gin.Default()
+	// GinをReleaseモードに設定
+	gin.SetMode(gin.ReleaseMode)
+	// Engineインスタンスの作成
+	engine := gin.Default()
 	// /hello?firstname=XXX&lastname=YYY
-	router.GET("/hello", getFunction)
-	router.Run(":3000")
+	engine.GET("/hello", getFunction)
+	engine.Run(":3000")
 }

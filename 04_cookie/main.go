@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+	// Engineインスタンスの作成
+	engine := gin.Default()
 	// GETメソッド
-	router.GET("/cookie", func(ctx *gin.Context) {
+	engine.GET("/cookie", func(ctx *gin.Context) {
 		// Cookieの取得
 		cookie, err := ctx.Cookie("gin_cookie")
 		// Cookieがない場合
@@ -21,5 +22,5 @@ func main() {
 		fmt.Printf("Cookie value: %s \n", cookie)
 	})
 
-	router.Run(":3000")
+	engine.Run(":3000")
 }

@@ -14,11 +14,12 @@ var secrets = gin.H{
 }
 
 func main() {
-	router := gin.Default()
+	// Engineインスタンスの作成
+	engine := gin.Default()
 
 	// gin.BasicAuth() ミドルウェアを使用したグループ
 	// gin.Accounts は map[string]string へのショートカットである
-	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := engine.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -35,5 +36,5 @@ func main() {
 			ctx.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
 		}
 	})
-	router.Run(":3000")
+	engine.Run(":3000")
 }

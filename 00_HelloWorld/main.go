@@ -6,23 +6,26 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+	// GinをReleaseモードに設定
+	gin.SetMode(gin.ReleaseMode)
+	// Engineインスタンスの作成
+	engine := gin.Default()
 	// POSTメソッド
-	router.POST("/hello", func(ctx *gin.Context) {
+	engine.POST("/hello", func(ctx *gin.Context) {
 		ctx.String(200, "OK")
 	})
 	// GETメソッド
-	router.GET("/hello", func(ctx *gin.Context) {
+	engine.GET("/hello", func(ctx *gin.Context) {
 		ctx.String(200, "OK")
 	})
 	// PUTメソッド
-	router.PUT("/hello", func(ctx *gin.Context) {
+	engine.PUT("/hello", func(ctx *gin.Context) {
 		ctx.String(200, "OK")
 	})
 	// DELETEメソッド
-	router.DELETE("/hello", func(ctx *gin.Context) {
+	engine.DELETE("/hello", func(ctx *gin.Context) {
 		ctx.String(200, "OK")
 	})
 	// ポート番号を指定
-	router.Run(":3000")
+	engine.Run(":3000")
 }
